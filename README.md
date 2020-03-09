@@ -20,12 +20,12 @@
 
 ### Create & Run JupyterHub
 -  https://zero-to-jupyterhub.readthedocs.io/en/latest/setup-jupyterhub.html
-# Add Security Token to config.yaml
+### Add Security Token to config.yaml
 - sed -i 's/<RANDOM_HEX>/'"$( openssl rand -hex 32 )"'/g' config.yaml
-# Add jupyterhub github repo to helm
+### Add jupyterhub github repo to helm
 - helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
 - helm repo update
-# Run the config.yaml file to start up JupyterHub: RELEASE=NAMESPACE=jhub, JUPYTER_VERSION=0.7.0
+### Run the config.yaml file to start up JupyterHub: RELEASE=NAMESPACE=jhub, JUPYTER_VERSION=0.7.0
 - helm upgrade --install jhub jupyterhub/jupyterhub --namespace jhub --version 0.8-ccc1e6b --values config.yaml
-# After JupyterHub has started up, run this command to update it settings according to the config.yaml file
+### After JupyterHub has started up, run this command to update it settings according to the config.yaml file
 - helm upgrade jhub jupyterhub/jupyterhub --version=0.8-ccc1e6b --values config.yaml
